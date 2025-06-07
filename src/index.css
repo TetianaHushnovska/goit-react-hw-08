@@ -26,6 +26,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: #EEAECA;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
 }
 
 h1 {
@@ -44,13 +46,6 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -71,3 +66,9 @@ ul{
   margin: 0;
   padding: 0;
 }
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+}
+

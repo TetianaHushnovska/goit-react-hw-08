@@ -1,0 +1,40 @@
+.container{
+    width: 450px;
+    min-height: 300px;
+    padding: 20px
+}
+
+.label{
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+
+.input{
+    width: 100%;
+    height: 35px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    outline: none;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.btn{
+    border: none;
+    color: white;
+    background-color: #3F5EFB;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: auto;
+    font-size: 20px;
+    outline: none;
+}
+
+.btn:hover{
+    background-color: #FC466B;
+}
