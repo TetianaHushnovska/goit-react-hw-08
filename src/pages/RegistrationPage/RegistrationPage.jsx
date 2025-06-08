@@ -1,5 +1,4 @@
 import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
-import React from "react";
 
 const styles = {
   wrap: {
