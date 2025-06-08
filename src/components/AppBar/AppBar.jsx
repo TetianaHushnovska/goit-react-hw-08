@@ -4,6 +4,7 @@ import { Navigation } from "../Navigation/Navigation";
 import { UserMenu } from "../UserMenu/UserMenu";
 import { AuthNav } from "../AuthNav/AuthNav";
 import css from "./AppBar.module.css";
+import React from "react";
 
 export const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

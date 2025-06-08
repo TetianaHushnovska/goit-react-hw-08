@@ -1,13 +1,14 @@
+import React from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 import { refreshUser } from "../../redux/auth/operations";
-import { AppBar } from "../AppBar/AppBar";
 import { Route, Routes } from "react-router-dom";
 import { RestrictedRoute } from "../RestrictedRoute";
 import { PrivateRoute } from "../PrivateRoute";
 import { Toaster } from "react-hot-toast";
+import Layout from "../Layout/Layout";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -29,8 +30,7 @@ function App() {
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
   ) : (
-    <div>
-      <AppBar />
+    <Layout>
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -59,7 +59,7 @@ function App() {
       </Suspense>
 
       <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
-    </div>
+    </Layout>
   );
 }
 
