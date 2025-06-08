@@ -9,14 +9,13 @@ export const selectFilteredContacts = createSelector(
     if (!filter) return contacts;
 
     const normalizedFilter = filter.toLowerCase().trim();
-    const digitsOnlyFilter = filter.replace(/\D/g, "");
-
+    
     return contacts.filter((contact) => {
-      const name = (contact.name || "").toLowerCase().trim();
-      const phone = (contact.number || "").replace(/\D/g, "");
+      const name = contact.name.toLowerCase().trim();
+      const phone = contact.number
 
       const nameMatch = name.includes(normalizedFilter);
-      const phoneMatch = phone.includes(digitsOnlyFilter);
+      const phoneMatch = phone.includes(filter);
 
       return nameMatch || phoneMatch;
     });
