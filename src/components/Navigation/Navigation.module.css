@@ -16,3 +16,9 @@
 .navlink.active {
     color: #FC466B;
 }
+
+.nav{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}

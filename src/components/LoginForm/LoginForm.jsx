@@ -1,44 +1,62 @@
 import { useDispatch } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import css from "./LoginForm.module.css";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-
-    dispatch(
-      logIn({
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    )
+  const handleSubmit = (values, actions) => {
+    dispatch(logIn(values))
       .unwrap()
       .then(() => {
-        console.log("login success");
+        console.log("Login success");
+        actions.resetForm();
       })
       .catch(() => {
-        console.log("login error");
+        console.log("Login error");
       });
-
-    form.reset();
   };
 
   return (
-    <form className={css.container} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" className={css.input} />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" className={css.input} />
-      </label>
-      <button type="submit" className={css.btn}>
-        Log In
-      </button>
-    </form>
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      validate={(values) => {
+        const errors = {};
+
+        if (!values.email) {
+          errors.email = "Email required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+
+        if (!values.password) {
+          errors.password = "Password required";
+        }
+
+        return errors;
+      }}
+      onSubmit={handleSubmit}
+    >
+      <Form className={css.container}>
+        <label className={css.label} htmlFor="email">
+          Email
+          <Field type="email" name="email" className={css.input} />
+        </label>
+        <ErrorMessage name="email" component="div" className={css.message} />
+
+        <label className={css.label} htmlFor="password">
+          Password
+          <Field type="password" name="password" className={css.input} />
+        </label>
+        <ErrorMessage name="password" component="div" className={css.message} />
+
+        <button type="submit" className={css.btn}>
+          Log In
+        </button>
+      </Form>
+    </Formik>
   );
 };

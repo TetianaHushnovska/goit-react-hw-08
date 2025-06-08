@@ -1,49 +1,81 @@
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./RegisterForm.module.css";
+import { Form, Formik, ErrorMessage, Field } from "formik";
+import toast from "react-hot-toast";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-
+  const handleSubmit = (values, { resetForm }) => {
     dispatch(
       register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        name: values.name,
+        email: values.email,
+        password: values.password,
       })
-    );
-
-    console.log("Submitted:", {
-      name: form.elements.name.value,
-      email: form.elements.email.value,
-      password: form.elements.password.value,
-    });
-
-    form.reset();
+    )
+      .unwrap()
+      .then(() => {
+        console.log("registration success");
+        resetForm();
+      })
+      .catch(() => {
+        toast.error(
+          "This email might be already in use. Please try another one!"
+        );
+      });
   };
 
   return (
-    <form className={css.container} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Username
-        <input type="text" name="name" className={css.input} />
-      </label>
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" className={css.input} />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" className={css.input} />
-      </label>
+    <Formik
+      initialValues={{ name: "", email: "", password: "" }}
+      validate={(values) => {
+        const errors = {};
 
-      <button type="submit" className={css.btn}>
-        Register
-      </button>
-    </form>
+        if (!values.name) {
+          errors.name = "Name required";
+        }
+
+        if (!values.email) {
+          errors.email = "Email required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+
+        if (!values.password) {
+          errors.password = "Password required";
+        }
+
+        return errors;
+      }}
+      onSubmit={handleSubmit}
+    >
+      <Form className={css.container}>
+        <label className={css.label} htmlFor="name">
+          Username
+          <Field type="text" name="name" className={css.input} />
+        </label>
+        <ErrorMessage name="name" component="div" className={css.message} />
+
+        <label className={css.label} htmlFor="email">
+          Email
+          <Field type="email" name="email" className={css.input} />
+        </label>
+        <ErrorMessage name="email" component="div" className={css.message} />
+
+        <label className={css.label} htmlFor="password">
+          Password
+          <Field type="password" name="password" className={css.input} />
+        </label>
+        <ErrorMessage name="password" component="div" className={css.message} />
+
+        <button type="submit" className={css.btn}>
+          Register
+        </button>
+      </Form>
+    </Formik>
   );
 };

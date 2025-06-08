@@ -1,23 +1,42 @@
 .card{
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     width: 290px;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 15px;
     margin-bottom: 10px;
     height: 80px;
+    background-color: rgb(255, 255, 255, 0.5);
 }
 
 p{
+    color: rgb(99, 97, 97);
     margin: 6px 0;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .icon{
-    margin-right: 8px;
+    width: 40px;
+    height: 40px;
+    color: gray;
+    border-radius: 50%;
+    background-color: rgb(213, 211, 211);
 }
 
-.button{
-    font-size: 12px;
+.btn {
+    border: none;
+    color: white;
+    background-color: #3F5EFB;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: auto;
+    font-size: 14px;
+    outline: none;
+}
+
+.btn:hover {
+    background-color: #FC466B;
 }

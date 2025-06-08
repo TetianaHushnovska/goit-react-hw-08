@@ -7,6 +7,7 @@ import { AppBar } from "../AppBar/AppBar";
 import { Route, Routes } from "react-router-dom";
 import { RestrictedRoute } from "../RestrictedRoute";
 import { PrivateRoute } from "../PrivateRoute";
+import { Toaster } from "react-hot-toast";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const RegistrationPage = lazy(() =>
@@ -56,6 +57,8 @@ function App() {
           />
         </Routes>
       </Suspense>
+
+      <Toaster position="top-right" toastOptions={{ duration: 3000 }} />
     </div>
   );
 }

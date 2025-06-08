@@ -7,7 +7,7 @@ export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <nav>
+    <nav className={css.nav}>
       <NavLink
         to="/"
         className={({ isActive }) =>
@@ -16,7 +16,16 @@ export const Navigation = () => {
       >
         Home
       </NavLink>
-      {isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}
+      {isLoggedIn && (
+        <NavLink
+          to="/contacts"
+          className={({ isActive }) =>
+            isActive ? `${css.navlink} ${css.active}` : css.navlink
+          }
+        >
+          Contacts
+        </NavLink>
+      )}
     </nav>
   );
 };

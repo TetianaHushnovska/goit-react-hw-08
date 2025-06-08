@@ -6,7 +6,7 @@ import { useDebouncedCallback } from "use-debounce";
 
 export default function SearchBox() {
   const dispatch = useDispatch();
-  const filteredContacts = useSelector(selectNameFilter);
+  const filter = useSelector(selectNameFilter);
 
   const debounced = useDebouncedCallback(
     (value) => dispatch(setFilter(value.trim())),
@@ -15,12 +15,12 @@ export default function SearchBox() {
 
   return (
     <div>
-      <p>Find contacts by name</p>
       <input
         type="text"
         className={css.filter}
-        defaultValue={filteredContacts}
+        value={filter}
         onChange={(e) => debounced(e.target.value)}
+        placeholder="Find your contact..."
       />
     </div>
   );

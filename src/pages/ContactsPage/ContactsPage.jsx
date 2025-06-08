@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { fetchContacts } from "../../redux/contacts/operations";
 import ContactForm from "../../components/ContactForm/ContactForm";
 import ContactList from "../../components/ContactList/ContactList";
+import SearchBox from "../../components/SearchBox/SearchBox";
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function ContactsPage() {
     <>
       <title>Yout contacts</title>
       <ContactForm />
+      <SearchBox />
       <div>{isLoading && "Looking for contacts...👀"}</div>
       <ContactList />
     </>

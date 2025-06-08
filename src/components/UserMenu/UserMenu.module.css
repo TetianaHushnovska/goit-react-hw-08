@@ -1,0 +1,26 @@
+.container{
+    min-width: 150px;
+    display: flex;
+    gap: 25px;
+}
+
+.text{
+    font-size: 30px;
+    color: #3F5EFB;
+    font-weight: 500;
+}
+
+.btn {
+    border: none;
+    color: white;
+    background-color: #3F5EFB;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin: auto;
+    font-size: 20px;
+    outline: none;
+}
+
+.btn:hover {
+    background-color: #FC466B;
+}
