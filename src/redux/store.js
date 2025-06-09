@@ -11,13 +11,13 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
+} from 'redux-persist';
 import storage from "redux-persist/lib/storage";
 
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
-  whiteList: ["token"],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
@@ -26,7 +26,7 @@ export const store = configureStore({
         contacts: contactsReducer,
         filters: filterReducer,
     },
-    middleware: (getDefaultMiddleware) =>
+   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
